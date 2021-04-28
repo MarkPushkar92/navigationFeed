@@ -79,17 +79,11 @@ class LogInViewController: UIViewController {
         
         var containerView = UIView()
         
-        required init?(coder: NSCoder) {
-            super.init(coder: coder)
-        }
         
     @objc func buttonTapped() {
-       print("button tapped")
-    
-        guard let sb = self.storyboard else { return }
-        let identifier = "profileViewControllerIdentifier"
-        let vc = sb.instantiateViewController(withIdentifier: identifier)
-        self.navigationController?.pushViewController(vc, animated: true)
+        print("button tapped")
+        let vc = ProfileViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
         override func viewDidLoad() {
@@ -117,11 +111,15 @@ class LogInViewController: UIViewController {
         override func viewDidDisappear(_ animated: Bool) {
             super.viewDidDisappear(animated)
 
-            self.navigationController?.navigationBar.isHidden = false
             NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
             NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
         }
 
+        override func viewWillDisappear(_ animated: Bool) {
+            super.viewWillDisappear(animated)
+            self.navigationController?.navigationBar.isHidden = false
+        }
+    
         @objc fileprivate func keyboardWillShow(notification: NSNotification) {
             if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
                 scrollView.contentInset.bottom = keyboardSize.height

@@ -8,24 +8,37 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class TabBarViewController: UITabBarController {
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let feed = FeedViewController()
+        let itemFeed: UITabBarItem = {
+            let itemFeed = UITabBarItem()
+            itemFeed.title = "Feed"
+            itemFeed.image = UIImage.init(systemName: "house.fill")
+            itemFeed.tag = 0
+            return itemFeed
+        }()
+        
+        feed.tabBarItem = itemFeed
+        
+        let logIn = LogInViewController()
+        let itemLog: UITabBarItem = {
+            let itemLog = UITabBarItem()
+            itemLog.title = "Feed"
+            itemLog.image = UIImage.init(systemName: "house.fill")
+            itemLog.tag = 1
+            return itemLog
+        }()
+        
+        logIn.tabBarItem = itemLog
+        let tabBarList = [feed, logIn]
+        viewControllers = tabBarList.map { UINavigationController(rootViewController: $0) }
     }
     
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

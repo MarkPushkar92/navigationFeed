@@ -23,23 +23,15 @@ class ProfileViewController: UIViewController {
     }()
     
     private let cellID = "cellID"
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-       setupViews()
-        
+        setupViews()
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
     }
-    
-
 }
 
 extension UIView {
